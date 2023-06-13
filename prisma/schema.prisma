@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id         Int        @id @default(autoincrement())
+  username   String     @unique
+  uid        String     @unique
+  email      String     @unique
+  created_at String
+  updated_at String
+  journals   journals[]
+  likes      likes[]
+  routines   routines[]
+}
+
+model routines {
+  id              Int        @id @default(autoincrement())
+  user_id         users      @relation(fields: [users_id], references: [id])
+  routine_name    String
+  skin_type       String
+  routine_product Int[]
+  public          Boolean
+  created_at      String
+  updated_at      String
+  journals        journals[]
+  likes           likes[]
+  users_id        Int
+}
+
+model journals {
+  id          Int      @id @default(autoincrement())
+  routine_id  routines @relation(fields: [routines_id], references: [id])
+  routines_id Int
+  user_id     users    @relation(fields: [users_id], references: [id])
+  users_id    Int
+  comments    String?
+  date        String
+  img_url     String?
+  created_at  String
+  updated_at  String
+}
+
+model products {
+  id           Int      @id @default(autoincrement())
+  brand        String
+  product_name String
+  ingredients  String[]
+  created_at   String
+  updated_at   String
+}
+
+model likes {
+  id          Int      @id @default(autoincrement())
+  user_id     users    @relation(fields: [users_id], references: [id])
+  users_id    Int
+  routine_id  routines @relation(fields: [routines_id], references: [id])
+  routines_id Int
+  like        Boolean
+  created_at  String
+  updated_at  String
+}
