@@ -9,6 +9,22 @@ export default {
     const japanTime = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Tokyo",
     });
+
+    const checkAlreadyLiked = await prisma.likes.findFirst({
+       where: {
+        users_id: parsedId,
+        routines_id: parsedRoutineId,
+       },
+       select: {
+        users_id: true,
+        routines_id: true
+       }
+    })
+
+    if(checkAlreadyLiked){
+      return "User already liked this post";
+    }
+
     const newLikeData = await prisma.likes.create({
       data: {
         user_id: {
