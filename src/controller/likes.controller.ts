@@ -32,5 +32,16 @@ export default {
     } catch (error) {
       res.status(400).send("Not found")
     }
+  },
+
+  async deleteLike(req: Request, res: Response) {
+    try {
+      const id = req.params.id
+      const deltedPost = await likesService.deleteLike(id);
+      res.status(200).send(deltedPost)
+    } catch (error) {
+      console.error(error);
+      res.status(400).send("could not delete")
+    }
   }
 };

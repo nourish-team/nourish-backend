@@ -79,5 +79,14 @@ export default {
     });
 
     return likesHistory;
+  },
+
+  async deleteLike(id: number){
+    const deletLike = await prisma.likes.delete({
+      where: {
+        id: id
+      }
+    })
+    return deletLike;
   }
 };
