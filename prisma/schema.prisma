@@ -34,6 +34,9 @@ model routines {
   journals        journals[]
   likes           likes[]
   users_id        Int
+  weather_type    String?
+  description     String?    @db.VarChar(350)
+  price           Int?
 }
 
 model journals {
