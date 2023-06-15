@@ -15,4 +15,9 @@ export default {
     const parsedRoutineId = parseInt(routineId, 10);
     return likesModel.getTotalLikes(parsedRoutineId);
   },
+
+  getHistoryLike(userIdParam: string) {
+    const userId: number =  parseInt(userIdParam, 10);
+    return likesModel.getHistoryLike(userId)
+  }
 };

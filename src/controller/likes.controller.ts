@@ -22,4 +22,15 @@ export default {
       res.status(400).send("Not found");
     }
   },
+
+  async getHistoryLikes(req: Request, res: Response) {
+    try {
+      const userIdParam = req.params.id;
+      const likesHistory = await likesService.getHistoryLike(userIdParam);
+      res.status(200).send(likesHistory);
+      
+    } catch (error) {
+      res.status(400).send("Not found")
+    }
+  }
 };
