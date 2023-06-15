@@ -48,7 +48,7 @@ export default {
   },
 
   async getTotalLikes(parsedRoutineId: number) {
-    const totalLikes = prisma.likes.count({
+    const totalLikes = await prisma.likes.count({
       where: {
         routines_id: parsedRoutineId,
       },
@@ -58,4 +58,26 @@ export default {
     });
     return totalLikes;
   },
+
+  async getHistoryLike(userId: number) {
+    const likesHistory = await prisma.likes.findMany({
+      where: {
+        users_id: userId,
+        like: true,
+      },
+      select: {
+        users_id: true,
+        routine_id: {
+          select: {
+            id: true,
+            routine_name: true,
+            routine_product: true,
+            skin_type: true,
+          }
+        }
+      }
+    });
+
+    return likesHistory;
+  }
 };

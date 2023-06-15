@@ -39,6 +39,7 @@ router.get("/journal/routine/user/", journalController.getJournalData);
 // LIKES
 router.post("/like/routine", likesController.createLike);
 router.get("/like/total/:routineid", likesController.getTotalLikes);
+router.get("/like/user/:id", likesController.getHistoryLikes)
 
 // DELETE
 router.delete("/routine", (req: Request, res: Response) => {
