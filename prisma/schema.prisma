@@ -24,7 +24,7 @@ model users {
 
 model routines {
   id              Int        @id @default(autoincrement())
-  user_id         users      @relation(fields: [users_id], references: [id])
+  user_id         users      @relation(fields: [users_id], references: [id], onDelete: Cascade)
   routine_name    String
   skin_type       String
   routine_product Int[]
@@ -40,7 +40,7 @@ model journals {
   id          Int      @id @default(autoincrement())
   routine_id  routines @relation(fields: [routines_id], references: [id])
   routines_id Int
-  user_id     users    @relation(fields: [users_id], references: [id])
+  user_id     users    @relation(fields: [users_id], references: [id], onDelete: Cascade)
   users_id    Int
   comments    String?
   date        String
@@ -60,9 +60,9 @@ model products {
 
 model likes {
   id          Int      @id @default(autoincrement())
-  user_id     users    @relation(fields: [users_id], references: [id])
+  user_id     users    @relation(fields: [users_id], references: [id], onDelete: Cascade)
   users_id    Int
-  routine_id  routines @relation(fields: [routines_id], references: [id])
+  routine_id  routines @relation(fields: [routines_id], references: [id], onDelete: Cascade)
   routines_id Int
   like        Boolean
   created_at  String
