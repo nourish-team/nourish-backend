@@ -49,7 +49,12 @@ export default {
         },
         routine_name: true,
         routine_product: true,
-        created_at: true,
+        created_at: true, 
+        _count: {
+          select: {
+            likes: true
+          }
+        }
       },
     });
     return routinesBySkintype;
