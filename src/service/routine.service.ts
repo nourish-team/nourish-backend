@@ -5,6 +5,8 @@ interface Routine {
   skin_type: string;
   routine_product: number[];
   public: boolean;
+  weather_type: string;
+  description: string;
 }
 
 interface UpdateRoutine {
@@ -21,13 +23,17 @@ export default {
       skin_type: skinType,
       routine_product: routineProduct,
       public: routinePublic,
+      weather_type: weatherTag,
+      description
     } = routineData;
     return routineModel.createRoutine(
       id,
       routineName,
       skinType,
       routineProduct,
-      routinePublic
+      routinePublic,
+      weatherTag,
+      description
     );
   },
 

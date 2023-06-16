@@ -6,6 +6,7 @@ export default {
   async createRoutine(req: Request, res: Response) {
     try {
       const routineData = await routineService.createRoutine(req.body);
+      console.log(routineData);
       res.status(200).send(routineData);
     } catch (error: any) {
       console.log(error);
