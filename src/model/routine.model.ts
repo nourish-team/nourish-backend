@@ -6,7 +6,9 @@ export default {
     routineName: string,
     skinType: string,
     routineProduct: number[],
-    routinePublic: boolean
+    routinePublic: boolean,
+    weatherTag: string,
+    description: string
   ) {
     const japanTime = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Tokyo",
@@ -20,6 +22,8 @@ export default {
         skin_type: skinType,
         routine_product: routineProduct,
         public: routinePublic,
+        weather_type: weatherTag,
+        description: description,
         updated_at: japanTime,
         created_at: japanTime,
       },
@@ -28,6 +32,8 @@ export default {
         skin_type: true,
         routine_product: true,
         public: true,
+        weather_type: true,
+        description: true
       },
     });
     return routineData;
