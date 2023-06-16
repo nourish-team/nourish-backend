@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import routineService from "../service/routine.service";
+import productService from "../service/product.service";
 
 export default {
   async createRoutine(req: Request, res: Response) {
@@ -28,8 +29,19 @@ export default {
   async getRoutineByUserId(req: Request<{ id: string }>, res: Response) {
     try {
       const userId = req.params.id;
-      const routinesByUser = await routineService.getRoutineByUserId(userId);
-      res.status(200).send(routinesByUser);
+      
+      let routinesByUser = await routineService.getRoutineByUserId(userId);
+
+      const productsOfRoutines = await Promise.all(routinesByUser.map(async routine => {
+        const routineProduct = await Promise.all(routine["routine_product"]);
+          const product = await Promise.all(routineProduct.map(product => {
+              const routine = productService.getProductById(product);
+                return routine;
+              }))
+          return product;
+      }))
+
+      res.status(200).send({routinesByUser, productsOfRoutines});
     } catch (error: any) {
       console.error(error);
       res.status(400).send("user doesn't have any routines");
@@ -46,3 +58,15 @@ export default {
     }
   },
 };
+
+
+ // try {
+        //   const result = routine["routine_product"].map(async product => {
+        //     const routine = await productService.getProductById(product);
+        //     return routine;
+        //   });
+        //   return result;
+          
+        // } catch (error) {
+        //   console.log(error);
+        // }
