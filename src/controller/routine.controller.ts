@@ -29,7 +29,7 @@ export default {
   async getRoutineByUserId(req: Request<{ id: string }>, res: Response) {
     try {
       const userId = req.params.id;
-      
+
       let routinesByUser = await routineService.getRoutineByUserId(userId);
 
       const productsOfRoutines = await Promise.all(routinesByUser.map(async routine => {
@@ -58,15 +58,3 @@ export default {
     }
   },
 };
-
-
- // try {
-        //   const result = routine["routine_product"].map(async product => {
-        //     const routine = await productService.getProductById(product);
-        //     return routine;
-        //   });
-        //   return result;
-          
-        // } catch (error) {
-        //   console.log(error);
-        // }
