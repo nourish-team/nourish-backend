@@ -31,7 +31,7 @@ router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
 router.patch("/routine/update", routineController.updateRoutineUser);
 router.delete("/routine/delete/:id", routineController.deleteRoutineUser);
-router.patch("/routine/update/description", routineController.updateDescription)
+router.patch("/routine/update/description", routineController.updateDescription);
 
 // JOURNAL
 router.post("/journal/routine", journalController.createJournalRoutine);
@@ -45,10 +45,5 @@ router.get("/like/user/:id", likesController.getHistoryLikes);
 // /like/?userid=1&routineid=1
 // router.get("/like/", likesController.getLike)
 router.delete("/like/unlike/:id", likesController.deleteLike)
-
-// DELETE
-router.delete("/routine", (req: Request, res: Response) => {
-  res.send("add products to routine");
-});
 
 export default router;

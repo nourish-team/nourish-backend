@@ -73,9 +73,15 @@ export default {
       },
       select: {
         id: true,
+        user_id: {
+          select: {
+            username: true
+          }
+        },
         routine_name: true,
         routine_product: true,
         created_at: true,
+        description: true
       },
     });
 
