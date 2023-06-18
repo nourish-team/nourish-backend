@@ -55,7 +55,9 @@ export default {
         },
         routine_name: true,
         routine_product: true,
-        created_at: true, 
+        created_at: true,
+        weather_type: true,
+        description: true,
         _count: {
           select: {
             likes: true
