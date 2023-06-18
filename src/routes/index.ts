@@ -30,7 +30,8 @@ router.post("/routine/create", routineController.createRoutine);
 router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
 router.patch("/routine/update", routineController.updateRoutineUser);
-router.delete("/routine/delete/:id", routineController.deleteRoutineUser)
+router.delete("/routine/delete/:id", routineController.deleteRoutineUser);
+router.patch("/routine/update/description", routineController.updateDescription)
 
 // JOURNAL
 router.post("/journal/routine", journalController.createJournalRoutine);

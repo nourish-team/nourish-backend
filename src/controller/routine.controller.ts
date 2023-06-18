@@ -67,5 +67,15 @@ export default {
     } catch (error) {
       res.status(500).send("Not able to delete");
     }
+  },
+
+  async updateDescription(req: Request, res: Response) {
+    try {
+      const description = await routineService.updateDescription(req.body);
+      res.status(200).send(description);
+    } catch (error) {
+      console.error(error);
+      res.status(400).send("Could not update");
+    }
   }
 };
