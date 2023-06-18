@@ -15,6 +15,11 @@ interface UpdateRoutine {
   public: boolean | undefined;
 }
 
+interface Description {
+  id: number;
+  description: string;
+}
+
 export default {
   createRoutine(routineData: Routine) {
     let {
@@ -57,6 +62,11 @@ export default {
       routineProduct,
       routinePublic
     );
+  },
+
+  updateDescription(newDescription: Description) {
+    const {id, description} = newDescription;
+    return routineModel.updateDescription(id, description)
   },
 
   deleteRoutineUser(routineId: string) {

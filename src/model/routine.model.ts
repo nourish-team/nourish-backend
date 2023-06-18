@@ -104,6 +104,28 @@ export default {
     return newData;
   },
 
+  async updateDescription(id: number, description: string) {
+    const newDescription = await prisma.routines.update({
+      where: {
+        id: id,
+      },
+      data: {
+        description: description
+      },
+      select: {
+        id: true,
+        user_id: {
+          select: {
+            id: true
+          }
+        },
+        description: true
+      }
+    });
+
+    return newDescription;
+  },
+
   async deleteRoutineUser(userId: number) {
     const deleteData = await prisma.routines.delete({
       where: {
