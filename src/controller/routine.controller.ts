@@ -58,4 +58,14 @@ export default {
       res.status(400).send("Could not update");
     }
   },
+
+  async deleteRoutineUser(req: Request, res: Response) {
+    try {
+      const id = req.params.id;
+      const deleteData = await routineService.deleteRoutineUser(id);
+      res.status(200).send(deleteData);
+    } catch (error) {
+      res.status(500).send("Not able to delete");
+    }
+  }
 };

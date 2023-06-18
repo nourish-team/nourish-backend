@@ -58,4 +58,9 @@ export default {
       routinePublic
     );
   },
+
+  deleteRoutineUser(routineId: string) {
+    const routineIdToNumber = parseInt(routineId, 10);
+    return routineModel.deleteRoutineUser(routineIdToNumber);
+  }
 };

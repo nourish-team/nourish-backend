@@ -103,4 +103,16 @@ export default {
 
     return newData;
   },
+
+  async deleteRoutineUser(userId: number) {
+    const deleteData = await prisma.routines.delete({
+      where: {
+        id: userId
+      },
+      select: {
+        id: true,
+      }
+    });
+    return deleteData;
+  }
 };
