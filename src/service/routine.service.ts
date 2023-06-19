@@ -5,12 +5,19 @@ interface Routine {
   skin_type: string;
   routine_product: number[];
   public: boolean;
+  weather_type: string;
+  description: string;
 }
 
 interface UpdateRoutine {
   routine_id: number;
   routine_product: number[] | undefined;
   public: boolean | undefined;
+}
+
+interface Description {
+  id: number;
+  description: string;
 }
 
 export default {
@@ -21,13 +28,17 @@ export default {
       skin_type: skinType,
       routine_product: routineProduct,
       public: routinePublic,
+      weather_type: weatherTag,
+      description
     } = routineData;
     return routineModel.createRoutine(
       id,
       routineName,
       skinType,
       routineProduct,
-      routinePublic
+      routinePublic,
+      weatherTag,
+      description
     );
   },
 
@@ -52,4 +63,14 @@ export default {
       routinePublic
     );
   },
+
+  updateDescription(newDescription: Description) {
+    const {id, description} = newDescription;
+    return routineModel.updateDescription(id, description)
+  },
+
+  deleteRoutineUser(routineId: string) {
+    const routineIdToNumber = parseInt(routineId, 10);
+    return routineModel.deleteRoutineUser(routineIdToNumber);
+  }
 };

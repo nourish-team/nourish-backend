@@ -30,6 +30,8 @@ router.post("/routine/create", routineController.createRoutine);
 router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
 router.patch("/routine/update", routineController.updateRoutineUser);
+router.delete("/routine/delete/:id", routineController.deleteRoutineUser);
+router.patch("/routine/update/description", routineController.updateDescription);
 
 // JOURNAL
 router.post("/journal/routine", journalController.createJournalRoutine);
@@ -39,10 +41,9 @@ router.get("/journal/routine/user/", journalController.getJournalData);
 // LIKES
 router.post("/like/routine", likesController.createLike);
 router.get("/like/total/:routineid", likesController.getTotalLikes);
-
-// DELETE
-router.delete("/routine", (req: Request, res: Response) => {
-  res.send("add products to routine");
-});
+router.get("/like/user/:id", likesController.getHistoryLikes);
+// /like/?userid=1&routineid=1
+// router.get("/like/", likesController.getLike)
+router.delete("/like/unlike/:id", likesController.deleteLike)
 
 export default router;

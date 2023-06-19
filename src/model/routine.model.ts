@@ -6,7 +6,9 @@ export default {
     routineName: string,
     skinType: string,
     routineProduct: number[],
-    routinePublic: boolean
+    routinePublic: boolean,
+    weatherTag: string,
+    description: string
   ) {
     const japanTime = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Tokyo",
@@ -20,6 +22,8 @@ export default {
         skin_type: skinType,
         routine_product: routineProduct,
         public: routinePublic,
+        weather_type: weatherTag,
+        description: description,
         updated_at: japanTime,
         created_at: japanTime,
       },
@@ -28,6 +32,8 @@ export default {
         skin_type: true,
         routine_product: true,
         public: true,
+        weather_type: true,
+        description: true
       },
     });
     return routineData;
@@ -50,6 +56,13 @@ export default {
         routine_name: true,
         routine_product: true,
         created_at: true,
+        weather_type: true,
+        description: true,
+        _count: {
+          select: {
+            likes: true
+          }
+        }
       },
     });
     return routinesBySkintype;
@@ -62,9 +75,15 @@ export default {
       },
       select: {
         id: true,
+        user_id: {
+          select: {
+            username: true
+          }
+        },
         routine_name: true,
         routine_product: true,
         created_at: true,
+        description: true
       },
     });
 
@@ -92,4 +111,38 @@ export default {
 
     return newData;
   },
+
+  async updateDescription(id: number, description: string) {
+    const newDescription = await prisma.routines.update({
+      where: {
+        id: id,
+      },
+      data: {
+        description: description
+      },
+      select: {
+        id: true,
+        user_id: {
+          select: {
+            id: true
+          }
+        },
+        description: true
+      }
+    });
+
+    return newDescription;
+  },
+
+  async deleteRoutineUser(userId: number) {
+    const deleteData = await prisma.routines.delete({
+      where: {
+        id: userId
+      },
+      select: {
+        id: true,
+      }
+    });
+    return deleteData;
+  }
 };
