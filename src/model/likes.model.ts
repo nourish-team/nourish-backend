@@ -73,6 +73,7 @@ export default {
             routine_name: true,
             routine_product: true,
             skin_type: true,
+            description: true,
           }
         }
       }
