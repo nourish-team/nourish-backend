@@ -44,6 +44,6 @@ router.get("/like/total/:routineid", likesController.getTotalLikes);
 router.get("/like/user/:id", likesController.getHistoryLikes);
 // /like/?userid=1&routineid=1
 // router.get("/like/", likesController.getLike)
-router.delete("/like/unlike/:id", likesController.deleteLike)
+router.delete("/like/unlike/", likesController.deleteLike)
 
 export default router;

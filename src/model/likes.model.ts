@@ -82,6 +82,19 @@ export default {
     return likesHistory;
   },
 
+  async getIdLike(userId: number, routineId: number) {
+    const idLike = await prisma.likes.findFirst({
+      where: {
+        users_id: userId,
+        routines_id: routineId
+      },
+      select: {
+        id: true,
+      }
+    });
+    return idLike;
+  },
+
   async deleteLike(id: number){
     const deletLike = await prisma.likes.delete({
       where: {
