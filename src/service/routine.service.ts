@@ -46,6 +46,10 @@ export default {
     return routineModel.getRoutineBySkintype(skintype);
   },
 
+  getRoutineByWeatherType(weatherType: string) {
+    return routineModel.getRoutineByWeatherType(weatherType);
+  },
+
   getRoutineByUserId(userId: string) {
     const parsedId: number = parseInt(userId, 10);
     return routineModel.getRoutineByUserId(parsedId);

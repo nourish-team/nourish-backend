@@ -28,6 +28,7 @@ router.get("/product/id/:id", productController.getProductById);
 // ROUTINE
 router.post("/routine/create", routineController.createRoutine);
 router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
+router.get("/routine/weather/:type", routineController.getRoutineByWeatherType)
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
 router.patch("/routine/update", routineController.updateRoutineUser);
 router.delete("/routine/delete/:id", routineController.deleteRoutineUser);
