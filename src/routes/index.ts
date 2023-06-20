@@ -27,6 +27,7 @@ router.get("/product/id/:id", productController.getProductById);
 
 // ROUTINE
 router.post("/routine/create", routineController.createRoutine);
+router.get("/routine/top10", routineController.getAllRoutine)
 router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
 router.get("/routine/weather/:type", routineController.getRoutineByWeatherType)
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
