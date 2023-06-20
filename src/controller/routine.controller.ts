@@ -14,6 +14,16 @@ export default {
     }
   },
 
+  async getAllRoutine(req: Request, res: Response) {
+    try {
+      const routines = await routineService.getAllRoutine();
+      res.status(200).send(routines);
+    } catch (error) {
+      console.log(error);
+      res.status(400).send("Not found")
+    }
+  },
+
   async getRoutineBySkintype(req: Request, res: Response) {
     try {
       const skinType: string = req.params.type;

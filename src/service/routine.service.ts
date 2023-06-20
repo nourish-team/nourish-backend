@@ -42,6 +42,10 @@ export default {
     );
   },
 
+  getAllRoutine() {
+    return routineModel.getAllRoutine();
+  },
+
   getRoutineBySkintype(skintype: string) {
     return routineModel.getRoutineBySkintype(skintype);
   },
