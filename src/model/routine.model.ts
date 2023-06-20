@@ -41,6 +41,9 @@ export default {
 
   async getRoutineBySkintype(skintype: string) {
     const routinesBySkintype = await prisma.routines.findMany({
+      orderBy: [
+        {created_at: "desc"}
+      ],
       where: {
         skin_type: skintype,
         public: true,
@@ -70,6 +73,9 @@ export default {
 
   async getRoutineByWeatherType(weatherType: string) {
     const routineWeatherType = prisma.routines.findMany({
+      orderBy: [
+        {created_at: "desc"}
+      ],
       where: {
         weather_type: weatherType
       },
