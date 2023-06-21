@@ -27,7 +27,9 @@ router.get("/product/id/:id", productController.getProductById);
 
 // ROUTINE
 router.post("/routine/create", routineController.createRoutine);
+router.get("/routine/top10", routineController.getAllRoutine)
 router.get("/routine/skintype/:type", routineController.getRoutineBySkintype);
+router.get("/routine/weather/:type", routineController.getRoutineByWeatherType)
 router.get("/routine/user/:id", routineController.getRoutineByUserId);
 router.patch("/routine/update", routineController.updateRoutineUser);
 router.delete("/routine/delete/:id", routineController.deleteRoutineUser);
@@ -44,6 +46,6 @@ router.get("/like/total/:routineid", likesController.getTotalLikes);
 router.get("/like/user/:id", likesController.getHistoryLikes);
 // /like/?userid=1&routineid=1
 // router.get("/like/", likesController.getLike)
-router.delete("/like/unlike/:id", likesController.deleteLike)
+router.delete("/like/unlike/", likesController.deleteLike)
 
 export default router;

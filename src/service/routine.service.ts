@@ -42,8 +42,16 @@ export default {
     );
   },
 
+  getAllRoutine() {
+    return routineModel.getAllRoutine();
+  },
+
   getRoutineBySkintype(skintype: string) {
     return routineModel.getRoutineBySkintype(skintype);
+  },
+
+  getRoutineByWeatherType(weatherType: string) {
+    return routineModel.getRoutineByWeatherType(weatherType);
   },
 
   getRoutineByUserId(userId: string) {

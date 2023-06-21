@@ -14,6 +14,16 @@ export default {
     }
   },
 
+  async getAllRoutine(req: Request, res: Response) {
+    try {
+      const routines = await routineService.getAllRoutine();
+      res.status(200).send(routines);
+    } catch (error) {
+      console.log(error);
+      res.status(400).send("Not found")
+    }
+  },
+
   async getRoutineBySkintype(req: Request, res: Response) {
     try {
       const skinType: string = req.params.type;
@@ -24,6 +34,17 @@ export default {
     } catch (error: any) {
       console.error(error);
       res.status(400);
+    }
+  },
+
+  async getRoutineByWeatherType(req: Request, res: Response) {
+    try {
+      const weatherType: string = req.params.type;
+      const routineWeatherType = await routineService.getRoutineByWeatherType(weatherType);
+      res.status(200).send(routineWeatherType);
+    } catch (error) {
+      console.log(error);
+      res.status(400).send("Does not exist")
     }
   },
 

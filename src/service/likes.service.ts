@@ -21,6 +21,12 @@ export default {
     return likesModel.getHistoryLike(userId)
   },
 
+  getIdLike(useridQuery: string, routineIdQuery: string) {
+    const userId = parseInt(useridQuery, 10);
+    const routineId = parseInt(routineIdQuery, 10);
+    return likesModel.getIdLike(userId, routineId);
+  },
+
   deleteLike(id: string) {
     const likeId: number = parseInt(id, 10);
     return likesModel.deleteLike(likeId);

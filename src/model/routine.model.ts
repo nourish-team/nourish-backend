@@ -39,8 +39,42 @@ export default {
     return routineData;
   },
 
+  async getAllRoutine() {
+    const allRoutines = await prisma.routines.findMany({
+      select: {
+        id: true,
+        user_id: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        routine_name: true,
+        routine_product: true,
+        created_at: true,
+        weather_type: true,
+        description: true,
+        _count: {
+          select: {
+            likes: true
+          }
+        }
+      },
+      orderBy: {
+        likes: {
+          _count: "desc",
+        }
+      },
+      take: 10
+    });
+    return allRoutines;
+  },
+
   async getRoutineBySkintype(skintype: string) {
     const routinesBySkintype = await prisma.routines.findMany({
+      orderBy: [
+        {created_at: "desc"}
+      ],
       where: {
         skin_type: skintype,
         public: true,
@@ -66,6 +100,37 @@ export default {
       },
     });
     return routinesBySkintype;
+  },
+
+  async getRoutineByWeatherType(weatherType: string) {
+    const routineWeatherType = prisma.routines.findMany({
+      orderBy: [
+        {created_at: "desc"}
+      ],
+      where: {
+        weather_type: weatherType
+      },
+      select: {
+        id: true,
+        user_id: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        routine_name: true,
+        routine_product: true,
+        created_at: true,
+        weather_type: true,
+        description: true,
+        _count: {
+          select: {
+            likes: true
+          }
+        }
+      }
+    });
+    return routineWeatherType;
   },
 
   async getRoutineByUserId(userId: number) {

@@ -73,12 +73,26 @@ export default {
             routine_name: true,
             routine_product: true,
             skin_type: true,
+            description: true,
           }
         }
       }
     });
 
     return likesHistory;
+  },
+
+  async getIdLike(userId: number, routineId: number) {
+    const idLike = await prisma.likes.findFirst({
+      where: {
+        users_id: userId,
+        routines_id: routineId
+      },
+      select: {
+        id: true,
+      }
+    });
+    return idLike;
   },
 
   async deleteLike(id: number){
