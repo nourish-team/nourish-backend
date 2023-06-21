@@ -24,16 +24,25 @@ async function seedDatabase(): Promise<void> {
         .on("data", (row: any) => data.push(row))
         .on("end", async () => {
           for (const row of data) {
-            const newData: Omit<products, "id"> = {
-              brand: row["brand"].toLowerCase(),
-              product_name: row["product_name"].toLowerCase(),
-              ingredients: row["ingredients"],
-              created_at: japanTime,
-              updated_at: japanTime,
-            };
-            await prisma.products.create({
-              data: newData,
+            const existingProduct = await prisma.products.findFirst({
+              where: {
+                brand: row["brand"].toLowerCase(),
+                product_name: row["product_name"].toLowerCase(),
+              },
             });
+
+            if (!existingProduct) {
+              const newData: Omit<products, "id"> = {
+                brand: row["brand"].toLowerCase(),
+                product_name: row["product_name"].toLowerCase(),
+                ingredients: row["ingredients"],
+                created_at: japanTime,
+                updated_at: japanTime,
+              };
+              await prisma.products.create({
+                data: newData,
+              });
+            }
           }
         });
     }
