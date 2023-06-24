@@ -92,6 +92,23 @@ npm install
   ```sh
   psql -U postgres
   ```
+4. put the following in your .env file
+
+```sh
+DATABASE_URL=postgresql://yourname:yourpassword@localhost:5432/nameofyourdatabase
+```
+
+5. Run migartions
+
+```sh
+npx prisma migrate dev
+```
+
+6. In case it didn't seed automatically after running migrations
+   
+```sh
+npx prisma db seed
+```
 
 ## Basic Outline
 
