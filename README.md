@@ -7,7 +7,6 @@
 ## Table of Contents
 1. [Intro](##Intro):
     - About the project
-    - Demo
     - Features
     - Technologies Used
 2. [Getting Started](##GettingStarted):
@@ -53,6 +52,7 @@ Nourish aims to be a comprehensive companion for skincare enthusiasts, fostering
 - ![Express](https://img.shields.io/badge/Express-black?logo=express&logoColor=white)
 - ![PostgreSQL](https://img.shields.io/badge/PostgresSQL-4169E1?logo=postgresql&logoColor=white)
 - ![Prisma](https://img.shields.io/badge/Prisma-white?logo=prisma&logoColor=2D3748)
+- ![Heroku](https://img.shields.io/badge/Heroku-430098?logo=heroku&logoColor=white)
 
 
 ## Getting Started
