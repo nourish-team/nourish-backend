@@ -36,7 +36,7 @@ Liked routines are conveniently saved for future reference, providing inspiratio
 
 Nourish aims to be a comprehensive companion for skincare enthusiasts, fostering a community where users can learn from one another and make informed decisions about their skincare routine.
 
-### Feautures 
+### Features 
 
 - User registration, login, and authentication using Firebase
 - Create and manage multiple skincare routines
@@ -72,7 +72,7 @@ postgres --version
 
 ### Installation
 
-_Bellow you will find the basic installation and set up._
+_Below you will find the basic installation and set up._
 
 1. Clone the repo
 ```sh
@@ -141,11 +141,11 @@ Contributions are welcome! If you would like to contribute to nourish, please fo
 
 ## Contact
 
-- Anissa Chadouli
-- Lisa
-- Asako Ueno
-- Sean
-- Chai
+- Anissa Chadouli [Anissa3005](https://github.com/Anissa3005)
+- Lisa Tan [oddpharmacy](https://github.com/oddpharmacy)
+- Asako Ueno [asa-U](https://github.com/asa-U)
+- Sean McKay [shonancanuck](https://github.com/shonancanuck)
+- Gee Chai [FefesG5](https://github.com/FefesG5)
 
 ## Acknowledgments
 
