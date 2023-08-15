@@ -18,7 +18,6 @@ model users {
   created_at String
   updated_at String
   journals   journals[]
-  likes      likes[]
   routines   routines[]
 }
 
@@ -32,11 +31,8 @@ model routines {
   created_at      String
   updated_at      String
   journals        journals[]
-  likes           likes[]
   users_id        Int
-  weather_type    String?
   description     String?    @db.VarChar(350)
-  price           Int?
 }
 
 model journals {
@@ -45,9 +41,12 @@ model journals {
   routines_id Int
   user_id     users    @relation(fields: [users_id], references: [id], onDelete: Cascade)
   users_id    Int
+  dry_oily    Int?
+  breakouts   Int?
+  redness     Int?
+  blemish     Int?
   comments    String?
   date        String
-  img_url     String?
   created_at  String
   updated_at  String
 }
@@ -59,15 +58,4 @@ model products {
   ingredients  String[]
   created_at   String
   updated_at   String
-}
-
-model likes {
-  id          Int      @id @default(autoincrement())
-  user_id     users    @relation(fields: [users_id], references: [id], onDelete: Cascade)
-  users_id    Int
-  routine_id  routines @relation(fields: [routines_id], references: [id], onDelete: Cascade)
-  routines_id Int
-  like        Boolean
-  created_at  String
-  updated_at  String
 }
