@@ -1,6 +1,8 @@
 
 import signupModel from "../../model/signup.model";
+import app from "../../app";
 import { prismaMock }  from "../../singleton";
+import request  from "supertest";
 
 
 
@@ -45,6 +47,16 @@ describe("POST /signup", () => {
                     created_at: japanTime,
                     updated_at: japanTime
                 })
+        })
+
+        it("Should return statuscode 201 after succesful creation", async () => {
+            const response = await request(app).post("/signup").send({
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+            })
+            expect(response.statusCode).toEqual(201);
+           
         })
 
         
