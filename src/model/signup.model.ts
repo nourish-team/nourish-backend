@@ -1,7 +1,8 @@
 // import { PrismaClient} from '@prisma/client';
 // const prisma = new PrismaClient();
 
-import { prisma } from "../utils/db.server";
+import prisma  from "../utils/db.server";
+// import  prisma from './client'
 
 type User = {
   id: number;
