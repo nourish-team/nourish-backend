@@ -37,9 +37,9 @@ describe("POST /signup", () => {
 
             prismaMock.users.create.mockResolvedValue(user)
 
-            await expect(signupModel.createUser("frogman", "frogman@test.com", "ba927d96-3b2d-11ee-be56-0242ac120002x"))
-                .resolves
-                .toEqual({
+            const newUser = await signupModel.createUser("frogman", "frogman@test.com", "ba927d96-3b2d-11ee-be256-0242ac120002x")
+
+            expect(newUser).toEqual({
                     id: 1,
                     username: "frogman",
                     email: "frogman@test.com",
@@ -55,10 +55,55 @@ describe("POST /signup", () => {
                 email: "frogman@test.com",
                 uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
             })
-            expect(response.statusCode).toEqual(201);
-           
+            expect(response.statusCode).toEqual(201); 
+        })   
+    })
+
+    describe("Unsuccesful signup", () => {
+        it("Should trow error is the user already exist", async () => {
+            const japanTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Tokyo",
+              });
+
+            const user: User = {
+                id: 1,
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+                created_at: japanTime,
+                updated_at: japanTime
+            }
+
+            
+            // prismaMock.users.create.mockResolvedValue(user)
+
+
+
+            prismaMock.users.create.mockImplementation(() => {
+                throw new Error('There was an error.')
+              })
+              
+            const user2 =  await signupModel.createUser("", "", "")
+            
+            expect(user2).toEqual({message: "User already exist"})
+
         })
 
-        
+        it("Should trow error if username is not unique", () => {
+
+        })
+
+        it("Should trow error if email adress is not unique", () => {
+
+        })
+
+        it("Should trow error if uid is not unique", () => {
+
+        })
+
+        it("Should trow error if any field is empty", () => {
+            
+        })
+
     })
 })
