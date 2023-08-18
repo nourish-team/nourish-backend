@@ -9,12 +9,22 @@ interface SignupData {
 
 export default {
   createUser(userdata: SignupData) {
-    console.log(userdata);
-    const {
-      username,
-      email,
-      uid,
-    }: { username: string; email: string; uid: string } = userdata;
-    return modelSignup.createUser(username, email, uid);
+    try {
+      const {
+        username,
+        email,
+        uid,
+      }: { username: string; email: string; uid: string } = userdata;
+      
+      if(username.length < 1) {
+        throw new Error()
+      }
+  
+      return modelSignup.createUser(username, email, uid);
+      
+    } catch (error) {
+      return new Error("Something went wrong")
+    }
+ 
   },
 };

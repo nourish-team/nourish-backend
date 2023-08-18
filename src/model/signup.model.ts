@@ -17,7 +17,7 @@ export default {
     username: string,
     email: string,
     uid: string
-  ): Promise<User | Error> {
+  ): Promise<User | any> {
 
     const japanTime = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Tokyo",
@@ -41,11 +41,8 @@ export default {
 
       return userInfo;
       
-    } catch (error) {
-      // console.log("error here")
-      // console.log(error.message)
-     return {message: "User already exist"}
-      
+    } catch (error: any) {
+      return new Error("Something went wrong");
     }
     
   },
