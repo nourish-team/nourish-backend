@@ -19,7 +19,7 @@ export default {
       if(username.length < 1) {
         throw new Error()
       }
-  
+      
       return modelSignup.createUser(username, email, uid);
       
     } catch (error) {

@@ -11,8 +11,8 @@ export default {
       if (userData instanceof Error) {
         throw new Error()
       }
-      const test = {id: 1}
-      res.status(201).send(test);
+  
+      res.status(201).send(userData);
     } catch (error: any) {
       res.status(400).send(error)
     }

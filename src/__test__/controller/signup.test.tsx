@@ -1,9 +1,16 @@
 
 import signupModel from "../../model/signup.model";
+import signupController from "../../controller/signup.controller";
 import app from "../../app";
 import { prismaMock }  from "../../singleton";
 import request  from "supertest";
 
+
+// jest.mock("../../controller/signup.controller", () => ({
+//     createUser: jest.fn() as jest.Mock<Promise<any>>,
+// }))
+
+const createUserSpy = jest.spyOn(signupController, 'createUser');
 
 
 interface User {
@@ -15,10 +22,12 @@ interface User {
     updated_at: string
 }
 
-
-
 describe("POST /signup", () => {
-    
+    beforeEach(() => {
+        // Clear the mock implementation and reset any previous calls
+        createUserSpy.mockClear();
+      });
+      
     describe.only("If user succesfully created account", () => {
 
         it("Schould create a new user", async() => {
@@ -59,14 +68,16 @@ describe("POST /signup", () => {
         })
 
         it("Should return a id and username in body", async () => {
+            
+            createUserSpy.mockResolvedValue({ id: 1, username: "frogman" } as any);
+
             const response = await request(app).post("/signup").send({
-                username: "frogman2",
-                email: "frogman2@test.com",
-                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x2",
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
             })
 
-            expect(response.body).toEqual(200)
-            expect(response.body.username).toBeDefined(); 
+            expect(response.body).toEqual({ id: 1, username: "frogman" });
         })   
     })
 
