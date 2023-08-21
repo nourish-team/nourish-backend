@@ -2,8 +2,9 @@ console.log("Hello TS file ran");
 
 import * as fs from "fs";
 import csv from "csv-parser";
+import { products } from "@prisma/client"
 
-import { prisma, products } from "./utils/db.server";
+import prisma from "./utils/db.server";
 
 async function seedDatabase(): Promise<void> {
   try {

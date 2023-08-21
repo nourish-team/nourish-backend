@@ -1,11 +1,12 @@
 // import { PrismaClient} from '@prisma/client';
 // const prisma = new PrismaClient();
 
-import prisma  from "../utils/db.server";
+import prisma from "../utils/db.server";
 // import  prisma from './client'
 
 type User = {
-  id: number;
+  id: number,
+  username: string
 };
 
 interface Error {
@@ -24,7 +25,6 @@ export default {
     });
 
     try {
-
       const userInfo = await prisma.users.create({
         data: {
           username: username,
@@ -35,12 +35,12 @@ export default {
         },
         select: {
           id: true,
-          username: true,
+          username: true
         },
-      });
+      })
 
      
-      return userInfo;
+      return userInfo as User;
       
     } catch (error: any) {
       return new Error("Something went wrong");

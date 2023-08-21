@@ -8,7 +8,7 @@ interface SignupData {
 }
 
 export default {
-  createUser(userdata: SignupData) {
+  async createUser(userdata: SignupData) {
     try {
       const {
         username,
@@ -20,7 +20,8 @@ export default {
         throw new Error()
       }
       
-      return modelSignup.createUser(username, email, uid);
+      const newUser = await modelSignup.createUser(username, email, uid)
+      return newUser
       
     } catch (error) {
       return new Error("Something went wrong")

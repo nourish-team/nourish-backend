@@ -22,6 +22,11 @@ interface User {
     updated_at: string
 }
 
+type NewUser = {
+    id: number,
+    username: string
+  };
+
 describe("POST /signup", () => {
     beforeEach(() => {
         // Clear the mock implementation and reset any previous calls
@@ -69,7 +74,9 @@ describe("POST /signup", () => {
 
         it("Should return a id and username in body", async () => {
             
-            createUserSpy.mockResolvedValue({ id: 1, username: "frogman" } as any);
+            prismaMock.users.create.mockImplementation(():any  => {
+                return {id: 1, username: "frogman"}
+            })
 
             const response = await request(app).post("/signup").send({
                 username: "frogman",
@@ -77,7 +84,9 @@ describe("POST /signup", () => {
                 uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
             })
 
-            expect(response.body).toEqual({ id: 1, username: "frogman" });
+            expect(prismaMock.users.create).toBeCalled();
+            expect(response.body).toEqual({id: 1, username: "frogman"});
+            
         })   
     })
 
