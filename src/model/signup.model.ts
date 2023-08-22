@@ -1,8 +1,5 @@
-// import { PrismaClient} from '@prisma/client';
-// const prisma = new PrismaClient();
-
 import prisma from "../utils/db.server";
-// import  prisma from './client'
+import { Prisma } from "@prisma/client";
 
 type User = {
   id: number,
@@ -43,7 +40,16 @@ export default {
       return userInfo as User;
       
     } catch (error: any) {
-      return new Error("Something went wrong");
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          console.error({
+            code: error.code,
+            meta: error.meta,
+            message: error.message
+          })
+      }
+
+      return new Error('new user cannot be created with this data');
+      
     }
     
   },

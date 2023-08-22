@@ -8,7 +8,7 @@ interface SignupData {
 }
 
 export default {
-  async createUser(userdata: SignupData) {
+  createUser(userdata: SignupData) {
     try {
       const {
         username,
@@ -16,14 +16,21 @@ export default {
         uid,
       }: { username: string; email: string; uid: string } = userdata;
       
-      if(username.length < 1) {
-        throw new Error()
+      switch ("") {
+        case username:
+          throw new Error("username is missing")
+        case email:
+          throw new Error("email is missing")
+        case uid:
+          throw new Error("uid is missing")
+        default:
+          break;
       }
+
+      return modelSignup.createUser(username, email, uid)
       
-      const newUser = await modelSignup.createUser(username, email, uid)
-      return newUser
-      
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error.message, userdata)
       return new Error("Something went wrong")
     }
  

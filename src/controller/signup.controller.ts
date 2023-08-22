@@ -7,14 +7,29 @@ export default {
   async createUser(req: Request, res: Response) {
     try {
       const userData = await serviceSignup.createUser(req.body);
-      console.log(userData)
-      if (userData instanceof Error) {
+
+      if (userData instanceof Error || Object.keys(userData).length < 1) {
         throw new Error()
       }
   
       res.status(201).send(userData);
+
     } catch (error: any) {
-      res.status(400).send(error)
+
+      console.error(error.message)
+
+      const japanTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Tokyo",
+      });
+
+      const errorInfo = {
+        timestamp: japanTime,
+        status: 400,
+        message: "Could not create user",
+        path: "/signup"
+      }
+
+      res.status(400).send(errorInfo)
     }
   },
 };

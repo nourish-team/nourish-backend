@@ -6,12 +6,9 @@ import { prismaMock }  from "../../singleton";
 import request  from "supertest";
 
 
-// jest.mock("../../controller/signup.controller", () => ({
-//     createUser: jest.fn() as jest.Mock<Promise<any>>,
-// }))
-
-const createUserSpy = jest.spyOn(signupController, 'createUser');
-
+const japanTime = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Tokyo",
+  });
 
 interface User {
     id: number,
@@ -22,24 +19,12 @@ interface User {
     updated_at: string
 }
 
-type NewUser = {
-    id: number,
-    username: string
-  };
-
 describe("POST /signup", () => {
-    beforeEach(() => {
-        // Clear the mock implementation and reset any previous calls
-        createUserSpy.mockClear();
-      });
       
-    describe.only("If user succesfully created account", () => {
+    describe("successful signup", () => {
 
         it("Schould create a new user", async() => {
-            const japanTime = new Date().toLocaleString("en-US", {
-                timeZone: "Asia/Tokyo",
-              });
-
+            
             const user: User = {
                 id: 1,
                 username: "frogman",
@@ -63,6 +48,7 @@ describe("POST /signup", () => {
                 })
         })
 
+
         it("Should return statuscode 201 after succesful creation", async () => {
             const response = await request(app).post("/signup").send({
                 username: "frogman",
@@ -73,7 +59,7 @@ describe("POST /signup", () => {
         })
 
         it("Should return a id and username in body", async () => {
-            
+
             prismaMock.users.create.mockImplementation(():any  => {
                 return {id: 1, username: "frogman"}
             })
@@ -85,47 +71,101 @@ describe("POST /signup", () => {
             })
 
             expect(prismaMock.users.create).toBeCalled();
+            expect(prismaMock.users.create).toBeCalledWith({
+                data: {
+                    username: "frogman",
+                    email: "frogman@test.com",
+                    uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+                    updated_at: japanTime,
+                    created_at: japanTime
+                },
+                select: {
+                id: true,
+                username: true
+                },
+            })
             expect(response.body).toEqual({id: 1, username: "frogman"});
             
         })   
     })
 
-    describe("Unsuccesful signup", () => {
-        it("Should trow error is the user already exist", async () => {
+    describe.only("unsuccessful signup", () => {
+        it("Should throw error if the user already exist", async () => {
           
+            prismaMock.users.create.mockImplementation((): any => {
+                return {id: 1, username: "frogman"}
+              }) 
+
+            const user =  await signupModel.createUser("frogman", "frogman@test.com", "ba927d96-3b2d-11ee-be56-0242ac120002x")
+
             prismaMock.users.create.mockImplementation(() => {
-                throw new Error('There was an error.')
-              })
-              
+                throw new Error()
+            })
             const user2 =  await signupModel.createUser("frogman", "frogman@test.com", "ba927d96-3b2d-11ee-be56-0242ac120002x")
             
-            expect(user2).toEqual(new Error("Something went wrong"))
+            expect(user2 instanceof Error).toBeTruthy()
+            expect(user2).toEqual(new Error('new user cannot be created with this data'))
 
         })
 
-        it("Should trow error if username is empty", async() => {
+        it("Should return a object with info when error occure", async () => {
 
+            prismaMock.users.create.mockImplementation(() => {
+                throw new Error()
+            })
+
+            const response = await request(app).post("/signup").send({
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+            })
+
+            expect(response.statusCode).toEqual(400)
+            expect(response.body).toHaveProperty("timestamp")
+            expect(response.body).toHaveProperty("status")
+            expect(response.body).toHaveProperty("message")
+            expect(response.body).toHaveProperty("path")
+        })
+
+        it("Should throw an error when you receive userdata is empty", async () => {
+            const response = await request(app).post("/signup").send({
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+            })
+
+            expect(response.statusCode).toEqual(400)
+            expect(response.body).toHaveProperty("message")
+        })
+
+        it("Should trow error if some essantial information is missing", async () => {
             const response = await request(app).post("/signup").send({
                 username: "",
                 email: "frogman@test.com",
                 uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
             })
 
+            const response2 = await request(app).post("/signup").send({
+                username: "frogman",
+                email: "",
+                uid: "ba927d96-3b2d-11ee-be56-0242ac120002x",
+            })
+
+            const response3 = await request(app).post("/signup").send({
+                username: "frogman",
+                email: "frogman@test.com",
+                uid: "",
+            })
 
             expect(response.statusCode).toEqual(400)
-        })
+            expect(response.body).toHaveProperty("timestamp")
 
-        it("Should trow error if email adress is not unique", () => {
+            expect(response2.statusCode).toEqual(400)
+            expect(response2.body).toHaveProperty("path")
 
-        })
-
-        it("Should trow error if uid is not unique", () => {
-
-        })
-
-        it("Should trow error if any field is empty", () => {
+            expect(response3.statusCode).toEqual(400)
+            expect(response2.body).toHaveProperty("message")
             
         })
-
     })
 })
