@@ -1,4 +1,4 @@
-import { prisma } from "../utils/db.server";
+import  prisma from "../utils/db.server";
 
 export default {
   async updateAccessTokenLogin(userId: number, token: string) {
