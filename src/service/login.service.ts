@@ -1,21 +1,21 @@
-import loginModel from "../model/login.model";
+// import loginModel from "../model/login.model";
 
-type Token = {
-  access_token: string;
-};
+// type Token = {
+//   access_token: string;
+// };
 
-type Email = {
-  email: string;
-};
+// type Email = {
+//   email: string;
+// };
 
-export default {
-  updateAccessTokenLogin(userId: number, body: Token) {
-    const { access_token: token } = body;
-    return loginModel.updateAccessTokenLogin(userId, token);
-  },
+// export default {
+//   updateAccessTokenLogin(userId: number, body: Token) {
+//     const { access_token: token } = body;
+//     return loginModel.updateAccessTokenLogin(userId, token);
+//   },
 
-  getUserData(userEmail: Email) {
-    const { email } = userEmail;
-    return loginModel.getUserData(email);
-  },
-};
+//   getUserData(userEmail: Email) {
+//     const { email } = userEmail;
+//     return loginModel.getUserData(email);
+//   },
+// };

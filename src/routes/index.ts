@@ -3,11 +3,11 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 import signupController from "../controller/signup.controller";
-import loginController from "../controller/login.controller";
-import productController from "../controller/product.controller";
-import routineController from "../controller/routine.controller";
-import journalController from "../controller/journal.controller";
-import likesController from "../controller/likes.controller";
+// import loginController from "../controller/login.controller";
+// import productController from "../controller/product.controller";
+// import routineController from "../controller/routine.controller";
+// import journalController from "../controller/journal.controller";
+// import likesController from "../controller/likes.controller";
 
 // DEPLOYMENt
 router.get("/", (req: Request, res: Response) => {
