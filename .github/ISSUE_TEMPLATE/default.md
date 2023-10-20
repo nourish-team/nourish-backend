@@ -8,7 +8,7 @@ assignees: ""
 
 ## Description
 
-Explain short what you are going to do in this issue.
+Please briefly explain what you intend to do about this issue.
 
 ## Requirements
 
