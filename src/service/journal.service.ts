@@ -1,4 +1,4 @@
-import journalModel from "../model/journal.model";
+import journalModel from '../model/journal.model';
 
 interface Journal {
   routines_id: number;
@@ -24,7 +24,7 @@ export default {
       usersId,
       comments,
       date,
-      img_url
+      img_url,
     );
   },
 

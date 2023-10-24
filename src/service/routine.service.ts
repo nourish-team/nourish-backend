@@ -1,4 +1,4 @@
-import routineModel from "../model/routine.model";
+import routineModel from '../model/routine.model';
 interface Routine {
   user_id: number;
   routine_name: string;
@@ -29,7 +29,7 @@ export default {
       routine_product: routineProduct,
       public: routinePublic,
       weather_type: weatherTag,
-      description
+      description,
     } = routineData;
     return routineModel.createRoutine(
       id,
@@ -38,7 +38,7 @@ export default {
       routineProduct,
       routinePublic,
       weatherTag,
-      description
+      description,
     );
   },
 
@@ -68,17 +68,17 @@ export default {
     return routineModel.updateRoutineUser(
       routineId,
       routineProduct,
-      routinePublic
+      routinePublic,
     );
   },
 
   updateDescription(newDescription: Description) {
-    const {id, description} = newDescription;
-    return routineModel.updateDescription(id, description)
+    const { id, description } = newDescription;
+    return routineModel.updateDescription(id, description);
   },
 
   deleteRoutineUser(routineId: string) {
     const routineIdToNumber = parseInt(routineId, 10);
     return routineModel.deleteRoutineUser(routineIdToNumber);
-  }
+  },
 };

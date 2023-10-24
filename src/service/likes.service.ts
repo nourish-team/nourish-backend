@@ -1,4 +1,4 @@
-import likesModel from "../model/likes.model";
+import likesModel from '../model/likes.model';
 interface Like {
   users_id: number;
   routines_id: number;
@@ -17,8 +17,8 @@ export default {
   },
 
   getHistoryLike(userIdParam: string) {
-    const userId: number =  parseInt(userIdParam, 10);
-    return likesModel.getHistoryLike(userId)
+    const userId: number = parseInt(userIdParam, 10);
+    return likesModel.getHistoryLike(userId);
   },
 
   getIdLike(useridQuery: string, routineIdQuery: string) {
@@ -30,5 +30,5 @@ export default {
   deleteLike(id: string) {
     const likeId: number = parseInt(id, 10);
     return likesModel.deleteLike(likeId);
-  }
+  },
 };

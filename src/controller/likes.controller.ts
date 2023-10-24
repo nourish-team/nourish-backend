@@ -1,5 +1,5 @@
-import express, { Request, Response } from "express";
-import likesService from "../service/likes.service";
+import express, { Request, Response } from 'express';
+import likesService from '../service/likes.service';
 
 export default {
   async createLike(req: Request, res: Response) {
@@ -19,7 +19,7 @@ export default {
       res.status(200).send(totalLikes);
     } catch (error) {
       console.error(error);
-      res.status(400).send("Not found");
+      res.status(400).send('Not found');
     }
   },
 
@@ -28,9 +28,8 @@ export default {
       const userIdParam = req.params.id;
       const likesHistory = await likesService.getHistoryLike(userIdParam);
       res.status(200).send(likesHistory);
-      
     } catch (error) {
-      res.status(400).send("Not found")
+      res.status(400).send('Not found');
     }
   },
 
@@ -38,14 +37,17 @@ export default {
     try {
       const useridQuery = req.query.userid as string;
       const routineIdQuery = req.query.routineid as string;
-      const idLikes: any= await likesService.getIdLike(useridQuery, routineIdQuery);
-      const {id} = idLikes;
+      const idLikes: any = await likesService.getIdLike(
+        useridQuery,
+        routineIdQuery,
+      );
+      const { id } = idLikes;
 
       const deltedPost = await likesService.deleteLike(id);
       res.status(200).send(deltedPost);
     } catch (error) {
       console.error(error);
-      res.status(400).send("could not delete")
+      res.status(400).send('could not delete');
     }
-  }
+  },
 };

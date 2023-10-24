@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response } from 'express';
 
-import loginService from "../service/login.service";
+import loginService from '../service/login.service';
 
 export default {
   async updateAccessTokenLogin(req: Request, res: Response) {
@@ -9,11 +9,11 @@ export default {
       const userId = parseInt(paramsId);
       const newAccessToken = await loginService.updateAccessTokenLogin(
         userId,
-        req.body
+        req.body,
       );
       res.status(200).send(newAccessToken);
     } catch (error) {
-      res.status(304).send("NOT MODEFIED");
+      res.status(304).send('NOT MODEFIED');
     }
   },
 
@@ -23,7 +23,7 @@ export default {
       if (userData) {
         res.status(200).send(userData);
       } else {
-        res.status(400).send("User does not exist");
+        res.status(400).send('User does not exist');
       }
     } catch (error: any) {
       console.error(error);

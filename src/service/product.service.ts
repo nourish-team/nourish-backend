@@ -1,4 +1,4 @@
-import productModel from "../model/product.model";
+import productModel from '../model/product.model';
 
 export default {
   getProductByName(nameProduct: string) {

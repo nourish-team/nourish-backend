@@ -1,4 +1,4 @@
-import { prisma } from "../utils/db.server";
+import { prisma } from '../utils/db.server';
 
 export default {
   async createRoutine(
@@ -8,10 +8,10 @@ export default {
     routineProduct: number[],
     routinePublic: boolean,
     weatherTag: string,
-    description: string
+    description: string,
   ) {
-    const japanTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Tokyo",
+    const japanTime = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
     });
     const routineData = await prisma.routines.create({
       data: {
@@ -33,7 +33,7 @@ export default {
         routine_product: true,
         public: true,
         weather_type: true,
-        description: true
+        description: true,
       },
     });
     return routineData;
@@ -56,25 +56,23 @@ export default {
         description: true,
         _count: {
           select: {
-            likes: true
-          }
-        }
+            likes: true,
+          },
+        },
       },
       orderBy: {
         likes: {
-          _count: "desc",
-        }
+          _count: 'desc',
+        },
       },
-      take: 10
+      take: 10,
     });
     return allRoutines;
   },
 
   async getRoutineBySkintype(skintype: string) {
     const routinesBySkintype = await prisma.routines.findMany({
-      orderBy: [
-        {created_at: "desc"}
-      ],
+      orderBy: [{ created_at: 'desc' }],
       where: {
         skin_type: skintype,
         public: true,
@@ -94,9 +92,9 @@ export default {
         description: true,
         _count: {
           select: {
-            likes: true
-          }
-        }
+            likes: true,
+          },
+        },
       },
     });
     return routinesBySkintype;
@@ -104,11 +102,9 @@ export default {
 
   async getRoutineByWeatherType(weatherType: string) {
     const routineWeatherType = prisma.routines.findMany({
-      orderBy: [
-        {created_at: "desc"}
-      ],
+      orderBy: [{ created_at: 'desc' }],
       where: {
-        weather_type: weatherType
+        weather_type: weatherType,
       },
       select: {
         id: true,
@@ -125,10 +121,10 @@ export default {
         description: true,
         _count: {
           select: {
-            likes: true
-          }
-        }
-      }
+            likes: true,
+          },
+        },
+      },
     });
     return routineWeatherType;
   },
@@ -142,13 +138,13 @@ export default {
         id: true,
         user_id: {
           select: {
-            username: true
-          }
+            username: true,
+          },
         },
         routine_name: true,
         routine_product: true,
         created_at: true,
-        description: true
+        description: true,
       },
     });
 
@@ -157,7 +153,7 @@ export default {
   async updateRoutineUser(
     parsedRoutineId: number,
     parsedRoutine: number[] | undefined,
-    routinePublicBoolean: boolean | undefined
+    routinePublicBoolean: boolean | undefined,
   ) {
     const newData = await prisma.routines.update({
       where: {
@@ -183,17 +179,17 @@ export default {
         id: id,
       },
       data: {
-        description: description
+        description: description,
       },
       select: {
         id: true,
         user_id: {
           select: {
-            id: true
-          }
+            id: true,
+          },
         },
-        description: true
-      }
+        description: true,
+      },
     });
 
     return newDescription;
@@ -202,12 +198,12 @@ export default {
   async deleteRoutineUser(userId: number) {
     const deleteData = await prisma.routines.delete({
       where: {
-        id: userId
+        id: userId,
       },
       select: {
         id: true,
-      }
+      },
     });
     return deleteData;
-  }
+  },
 };

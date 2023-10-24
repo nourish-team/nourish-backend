@@ -1,4 +1,4 @@
-import { prisma } from "../utils/db.server";
+import { prisma } from '../utils/db.server';
 
 export default {
   async createJournalRoutine(
@@ -6,10 +6,10 @@ export default {
     usersId: number,
     comments: string | undefined,
     date: string,
-    img_url: string | undefined
+    img_url: string | undefined,
   ) {
-    const japanTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Tokyo",
+    const japanTime = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
     });
     const newJournalEntrie = await prisma.journals.create({
       data: {

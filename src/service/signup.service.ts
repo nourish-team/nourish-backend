@@ -1,5 +1,5 @@
-import express, { Request, Response } from "express";
-import modelSignup from "../model/signup.model";
+import express, { Request, Response } from 'express';
+import modelSignup from '../model/signup.model';
 
 interface SignupData {
   username: string;
