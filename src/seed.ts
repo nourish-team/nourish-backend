@@ -1,9 +1,9 @@
-console.log('Hello TS file ran');
-
 import * as fs from 'fs';
 import csv from 'csv-parser';
 
 import { prisma, products } from './utils/db.server';
+
+console.log('Hello TS file ran');
 
 async function seedDatabase(): Promise<void> {
   try {
@@ -26,16 +26,16 @@ async function seedDatabase(): Promise<void> {
           for (const row of data) {
             const existingProduct = await prisma.products.findFirst({
               where: {
-                brand: row['brand'].toLowerCase(),
-                product_name: row['product_name'].toLowerCase(),
+                brand: row.brand.toLowerCase(),
+                product_name: row.product_name.toLowerCase(),
               },
             });
 
             if (!existingProduct) {
               const newData: Omit<products, 'id'> = {
-                brand: row['brand'].toLowerCase(),
-                product_name: row['product_name'].toLowerCase(),
-                ingredients: row['ingredients'],
+                brand: row.brand.toLowerCase(),
+                product_name: row.product_name.toLowerCase(),
+                ingredients: row.ingredients,
                 created_at: japanTime,
                 updated_at: japanTime,
               };

@@ -98,7 +98,7 @@ export default {
   async deleteLike(id: number) {
     const deletLike = await prisma.likes.delete({
       where: {
-        id: id,
+        id,
       },
     });
     return deletLike;

@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 
-const router = express.Router();
-
 import signupController from '../controller/signup.controller';
 import loginController from '../controller/login.controller';
 import productController from '../controller/product.controller';
 import routineController from '../controller/routine.controller';
 import journalController from '../controller/journal.controller';
 import likesController from '../controller/likes.controller';
+
+const router = express.Router();
 
 // DEPLOYMENt
 router.get('/', (req: Request, res: Response) => {
@@ -21,7 +21,7 @@ router.post('/signup', signupController.createUser);
 router.patch('/login/session/:id', loginController.updateAccessTokenLogin);
 router.post('/login/user', loginController.getUserData);
 
-//PRODUCTS
+// PRODUCTS
 router.get('/product/:brand', productController.getProductByName);
 router.get('/product/id/:id', productController.getProductById);
 

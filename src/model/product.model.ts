@@ -4,7 +4,7 @@ export default {
   async getProductByName(brand: string) {
     const allBrandProduct = await prisma.products.findMany({
       where: {
-        brand: brand,
+        brand,
       },
       select: {
         id: true,
@@ -19,7 +19,7 @@ export default {
     console.log(id);
     const product = await prisma.products.findFirst({
       where: {
-        id: id,
+        id,
       },
       select: {
         id: true,

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import likesService from '../service/likes.service';
 
 export default {
@@ -37,11 +37,16 @@ export default {
     try {
       const useridQuery = req.query.userid as string;
       const routineIdQuery = req.query.routineid as string;
-      const idLikes: any = await likesService.getIdLike(
+      const idLikes: { id: number } | null = await likesService.getIdLike(
         useridQuery,
         routineIdQuery,
       );
-      const { id } = idLikes;
+
+      const id: number | undefined = idLikes?.id;
+
+      if (!id) {
+        throw new Error();
+      }
 
       const deltedPost = await likesService.deleteLike(id);
       res.status(200).send(deltedPost);

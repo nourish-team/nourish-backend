@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import journalService from '../service/journal.service';
 
 export default {
@@ -8,7 +8,7 @@ export default {
         req.body,
       );
       res.status(201).send(newJournalEntrie);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
       res.status(400).send('Not able to make post');
     }
@@ -27,7 +27,7 @@ export default {
       } else {
         res.status(400).send(journalData);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
     }
   },

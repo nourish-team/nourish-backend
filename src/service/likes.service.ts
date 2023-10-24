@@ -1,4 +1,5 @@
 import likesModel from '../model/likes.model';
+
 interface Like {
   users_id: number;
   routines_id: number;
@@ -27,8 +28,7 @@ export default {
     return likesModel.getIdLike(userId, routineId);
   },
 
-  deleteLike(id: string) {
-    const likeId: number = parseInt(id, 10);
-    return likesModel.deleteLike(likeId);
+  deleteLike(id: number) {
+    return likesModel.deleteLike(id);
   },
 };

@@ -1,4 +1,3 @@
-import express, { Request, Response } from 'express';
 import modelSignup from '../model/signup.model';
 
 interface SignupData {
@@ -9,7 +8,6 @@ interface SignupData {
 
 export default {
   createUser(userdata: SignupData) {
-    console.log(userdata);
     const {
       username,
       email,

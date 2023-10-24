@@ -1,7 +1,7 @@
 import { prisma } from '../utils/db.server';
 
 export default {
-  async updateAccessTokenLogin(userId: number, token: string) {
+  async updateAccessTokenLogin(userId: number) {
     const japanTime = new Date().toLocaleString('en-US', {
       timeZone: 'Asia/Tokyo',
     });
@@ -23,7 +23,7 @@ export default {
   async getUserData(email: string) {
     const userData = await prisma.users.findFirst({
       where: {
-        email: email,
+        email,
       },
       select: {
         id: true,

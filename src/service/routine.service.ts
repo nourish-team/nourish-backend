@@ -1,4 +1,5 @@
 import routineModel from '../model/routine.model';
+
 interface Routine {
   user_id: number;
   routine_name: string;
@@ -22,7 +23,7 @@ interface Description {
 
 export default {
   createRoutine(routineData: Routine) {
-    let {
+    const {
       user_id: id,
       routine_name: routineName,
       skin_type: skinType,

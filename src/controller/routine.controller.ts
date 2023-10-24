@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import routineService from '../service/routine.service';
 import productService from '../service/product.service';
 
@@ -8,7 +8,7 @@ export default {
       const routineData = await routineService.createRoutine(req.body);
       console.log(routineData);
       res.status(200).send(routineData);
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
       res.status(400);
     }
@@ -27,10 +27,9 @@ export default {
   async getRoutineBySkintype(req: Request, res: Response) {
     try {
       const skinType: string = req.params.type;
-      const routinesBySkintype =
-        await routineService.getRoutineBySkintype(skinType);
+      const routinesBySkintype = await routineService.getRoutineBySkintype(skinType);
       res.status(200).send(routinesBySkintype);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
       res.status(400);
     }
@@ -39,8 +38,7 @@ export default {
   async getRoutineByWeatherType(req: Request, res: Response) {
     try {
       const weatherType: string = req.params.type;
-      const routineWeatherType =
-        await routineService.getRoutineByWeatherType(weatherType);
+      const routineWeatherType = await routineService.getRoutineByWeatherType(weatherType);
       res.status(200).send(routineWeatherType);
     } catch (error) {
       console.log(error);
@@ -52,23 +50,23 @@ export default {
     try {
       const userId = req.params.id;
 
-      let routinesByUser = await routineService.getRoutineByUserId(userId);
+      const routinesByUser = await routineService.getRoutineByUserId(userId);
 
       const productsOfRoutines = await Promise.all(
         routinesByUser.map(async (routine) => {
-          const routineProduct = await Promise.all(routine['routine_product']);
-          const product = await Promise.all(
+          const routineProduct = await Promise.all(routine.routine_product);
+          const products = await Promise.all(
             routineProduct.map((product) => {
-              const routine = productService.getProductById(product);
-              return routine;
+              const skincareRoutine = productService.getProductById(product);
+              return skincareRoutine;
             }),
           );
-          return product;
+          return products;
         }),
       );
 
       res.status(200).send({ routinesByUser, productsOfRoutines });
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
       res.status(400).send("user doesn't have any routines");
     }
@@ -86,7 +84,7 @@ export default {
 
   async deleteRoutineUser(req: Request, res: Response) {
     try {
-      const id = req.params.id;
+      const { id } = req.params;
       const deleteData = await routineService.deleteRoutineUser(id);
       res.status(200).send(deleteData);
     } catch (error) {

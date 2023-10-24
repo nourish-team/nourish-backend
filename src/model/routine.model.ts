@@ -16,14 +16,14 @@ export default {
     const routineData = await prisma.routines.create({
       data: {
         user_id: {
-          connect: { id: id },
+          connect: { id },
         },
         routine_name: routineName,
         skin_type: skinType,
         routine_product: routineProduct,
         public: routinePublic,
         weather_type: weatherTag,
-        description: description,
+        description,
         updated_at: japanTime,
         created_at: japanTime,
       },
@@ -176,10 +176,10 @@ export default {
   async updateDescription(id: number, description: string) {
     const newDescription = await prisma.routines.update({
       where: {
-        id: id,
+        id,
       },
       data: {
-        description: description,
+        description,
       },
       select: {
         id: true,

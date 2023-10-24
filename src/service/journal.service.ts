@@ -5,26 +5,24 @@ interface Journal {
   users_id: number;
   comments: string | undefined;
   date: string;
-  img_url: string | undefined;
+  newImageUrl: string | undefined;
 }
-
-interface User {}
 
 export default {
   createJournalRoutine(journalData: Journal) {
-    let {
+    const {
       routines_id: routineId,
       users_id: usersId,
       comments,
       date,
-      img_url,
+      newImageUrl,
     } = journalData;
     return journalModel.createJournalRoutine(
       routineId,
       usersId,
       comments,
       date,
-      img_url,
+      newImageUrl,
     );
   },
 

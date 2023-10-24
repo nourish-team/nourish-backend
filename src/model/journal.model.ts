@@ -4,9 +4,9 @@ export default {
   async createJournalRoutine(
     routineId: number,
     usersId: number,
-    comments: string | undefined,
-    date: string,
-    img_url: string | undefined,
+    newComments: string | undefined,
+    newDate: string,
+    newImgUrl: string | undefined,
   ) {
     const japanTime = new Date().toLocaleString('en-US', {
       timeZone: 'Asia/Tokyo',
@@ -19,9 +19,9 @@ export default {
         routine_id: {
           connect: { id: routineId },
         },
-        comments: comments,
-        img_url: img_url,
-        date: date,
+        comments: newComments,
+        img_url: newImgUrl,
+        date: newDate,
         created_at: japanTime,
         updated_at: japanTime,
       },

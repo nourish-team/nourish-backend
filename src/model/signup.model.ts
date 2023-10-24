@@ -18,9 +18,9 @@ export default {
     });
     const userInfo = await prisma.users.create({
       data: {
-        username: username,
-        email: email,
-        uid: uid,
+        username,
+        email,
+        uid,
         updated_at: japanTime,
         created_at: japanTime,
       },
