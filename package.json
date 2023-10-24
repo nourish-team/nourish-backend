@@ -15,7 +15,8 @@
     "prisma:seed": "npx prisma db seed",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
-    "format": "prettier --write 'src/**/*.ts'"
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepare": "husky install" 
   },
   "keywords": [],
   "author": "",
@@ -43,6 +44,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3"
   }
 }
