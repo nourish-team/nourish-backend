@@ -9,7 +9,7 @@ export default {
       if (allBrandProduct.length > 0) {
         res.status(200).send(allBrandProduct);
       } else {
-        res.status(400).send(`Brand doesn't exist in database`);
+        res.status(400).send('Brand doesn\'t exist in database');
       }
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ export default {
       if (product) {
         res.status(200).send(product);
       } else {
-        res.status(400).send(`Product doesn't exist in database`);
+        res.status(400).send('Product doesn\'t exist in database');
       }
     } catch (error) {
       console.log(error);
