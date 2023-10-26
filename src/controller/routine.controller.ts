@@ -68,7 +68,7 @@ export default {
       res.status(200).send({ routinesByUser, productsOfRoutines });
     } catch (error) {
       console.error(error);
-      res.status(400).send("user doesn't have any routines");
+      res.status(400).send(`user doesn't have any routines`);
     }
   },
 
