@@ -1,28 +1,28 @@
-import { prisma } from "../utils/db.server";
+import { prisma } from '../utils/db.server';
 
 export default {
   async createLike(
     parsedId: number,
     parsedRoutineId: number,
-    likeBoolean: boolean
+    likeBoolean: boolean,
   ) {
-    const japanTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Tokyo",
+    const japanTime = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
     });
 
     const checkAlreadyLiked = await prisma.likes.findFirst({
-       where: {
+      where: {
         users_id: parsedId,
         routines_id: parsedRoutineId,
-       },
-       select: {
+      },
+      select: {
         users_id: true,
-        routines_id: true
-       }
-    })
+        routines_id: true,
+      },
+    });
 
-    if(checkAlreadyLiked){
-      return "User already liked this post";
+    if (checkAlreadyLiked) {
+      return 'User already liked this post';
     }
 
     const newLikeData = await prisma.likes.create({
@@ -74,9 +74,9 @@ export default {
             routine_product: true,
             skin_type: true,
             description: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
 
     return likesHistory;
@@ -86,22 +86,22 @@ export default {
     const idLike = await prisma.likes.findFirst({
       where: {
         users_id: userId,
-        routines_id: routineId
+        routines_id: routineId,
       },
       select: {
         id: true,
-      }
+      },
     });
     return idLike;
   },
 
-  async deleteLike(id: number){
+  async deleteLike(id: number) {
     const deletLike = await prisma.likes.delete({
       where: {
-        id: id
-      }
-    })
+        id,
+      },
+    });
     return deletLike;
-    // only possible with id 
-  }
+    // only possible with id
+  },
 };

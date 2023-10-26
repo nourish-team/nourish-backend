@@ -1,4 +1,4 @@
-import loginModel from "../model/login.model";
+import loginModel from '../model/login.model';
 
 type Token = {
   access_token: string;
