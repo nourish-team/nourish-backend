@@ -156,6 +156,20 @@ This will fix linting errors such as double quotes and spacing issues. However, 
 
 </details>
 
+<details>
+   <summary>Testing with Jest</summary>
+
+1. Test files can be found in the `__test__` directory in the project root.
+
+2. Add new tests as needed within this directory.
+
+3. Run tests using the command
+   ```
+   npm test
+   ```
+   After the tests have finished running, the results can be viewed in the console.
+</details>
+
 ## License
 
 This project is licensed under the MIT License.
