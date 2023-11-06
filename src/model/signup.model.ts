@@ -1,6 +1,3 @@
-// import { PrismaClient} from '@prisma/client';
-// const prisma = new PrismaClient();
-
 import { prisma } from '../utils/db.server';
 
 type User = {
@@ -13,6 +10,20 @@ export default {
     email: string,
     uid: string,
   ): Promise<User> {
+    if (username.length < 1) {
+      throw new Error('Invalid username');
+    }
+    if (email.length < 5 || !email.includes('@') || !email.includes('.')) {
+      throw new Error('Invalid email');
+    }
+    if (uid.split('-').length !== 5) {
+      throw new Error('Invalid UID');
+    }
+    for (const char of uid) {
+      if (!/^[a-z0-9-]+$/.test(uid)) {
+        throw new Error('Invalid UID');
+      }
+    }
     const japanTime = new Date().toLocaleString('en-US', {
       timeZone: 'Asia/Tokyo',
     });
@@ -29,6 +40,9 @@ export default {
         username: true,
       },
     });
+    if (!userInfo) {
+      throw new Error('Unable to create new user');
+    }
     return userInfo;
   },
 };
