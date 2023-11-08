@@ -164,10 +164,13 @@ This will fix linting errors such as double quotes and spacing issues. However, 
 2. Add new tests as needed within this directory.
 
 3. Run tests using the command
+
    ```
    npm test
    ```
+
    After the tests have finished running, the results can be viewed in the console.
+
 </details>
 
 ## License
