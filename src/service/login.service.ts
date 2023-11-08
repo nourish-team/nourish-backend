@@ -11,7 +11,7 @@ type Email = {
 export default {
   updateAccessTokenLogin(userId: number, body: Token) {
     const { access_token: token } = body;
-    return loginModel.updateAccessTokenLogin(userId);
+    return loginModel.updateAccessTokenLogin(userId, token);
   },
 
   getUserData(userEmail: Email) {
