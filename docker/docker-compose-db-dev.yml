@@ -4,9 +4,10 @@ services:
   db:
     container_name: postgres-dev
     image: postgres:15
+    restart: always
     environment:
       POSTGRES_PASSWORD: test
       POSTGRES_USER: postgres
-      POSTGRES_DB: db-dev
+      POSTGRES_DB: nourishdb-dev
     ports:
-      - 5432:5432
+      - 6500:5432

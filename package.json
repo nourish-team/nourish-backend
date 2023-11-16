@@ -10,7 +10,7 @@
     "start": "node build/server.js",
     "dev": "nodemon src/server.ts",
     "build": "tsc -p .",
-    "db:dockerup": "echo \"🐳✨ Starting docker compose...✨🐳\" && docker compose -f docker/docker-compose-db-dev.yml up",
+    "db:dockerup": "echo \"🐳✨ Starting docker compose...✨🐳\" && docker compose -f docker/docker-compose-db-dev.yml up -d && echo \"🔄️ Running migrations...🔄️\" && npm run prisma:migrate",
     "db:dockerdown": "echo \"🐋 Stopping docker compose... 🐋\" && docker compose -f docker/docker-compose-db-dev.yml down",
     "prisma:studio": "npx prisma studio",
     "prisma:generate": "npx prisma generate",
