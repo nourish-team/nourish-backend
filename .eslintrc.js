@@ -18,4 +18,7 @@ module.exports = {
     },
   ],
   ignorePatterns: ['src/seed.ts'],
+  // rules: {
+  //   'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+  // },
 };
