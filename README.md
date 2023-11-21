@@ -118,8 +118,10 @@ This will fix linting errors such as double quotes and spacing issues. However, 
    ```
    npm test
    ```
+
    After the tests have finished running, the results can be viewed in the console.
-   </details>
+
+</details>
 
 ## 📊 Data used
 
