@@ -18,7 +18,6 @@ router.get('/', (req: Request, res: Response) => {
 router.post('/signup', signupController.createUser);
 
 // LOGIN
-router.patch('/login/session/:id', loginController.updateAccessTokenLogin);
 router.post('/login/user', loginController.getUserData);
 
 // PRODUCTS
