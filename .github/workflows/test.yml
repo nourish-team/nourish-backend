@@ -24,6 +24,8 @@ jobs:
 
       - name: Start Container, migrate and seed
         run: npm run dev:startdb
+        env:
+          DATABASE_URL: 'postgresql://postgres:test@localhost:6500/nourishdb-dev'
 
       - name: Run tests
         run: npm run test
