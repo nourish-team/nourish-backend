@@ -1,5 +1,5 @@
 import { prisma } from '../utils/db.server';
-import { logPrismaError } from '../utils/prisma.error';
+import logPrismaError from '../utils/prisma.error';
 
 type User = {
   id: number;
