@@ -6,6 +6,9 @@
   "prisma": {
     "seed": "ts-node src/seed.ts"
   },
+  "overrides": {
+    "semver": "^7.5.3"
+  },
   "scripts": {
     "start": "node build/server.js",
     "dev": "nodemon src/server.ts",
