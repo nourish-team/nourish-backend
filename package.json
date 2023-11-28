@@ -26,6 +26,11 @@
     "prepare": "husky install",
     "test": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": ".husky/pre-push"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
