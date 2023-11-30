@@ -1,5 +1,5 @@
 import signupModel from '../src/model/signup.model';
-import { prismaMock } from '../singleton';
+import prismaMock from '../singleton';
 
 const japanTime = new Date().toLocaleString('en-US', {
   timeZone: 'Asia/Tokyo',

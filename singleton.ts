@@ -8,8 +8,10 @@ jest.mock('./src/utils/db.server', () => ({
   prisma: mockDeep<PrismaClient>(),
 }));
 
+const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
+
 beforeEach(() => {
   mockReset(prismaMock);
 });
 
-export const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
+export default prismaMock;
