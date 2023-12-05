@@ -35,17 +35,6 @@ export default {
     }
   },
 
-  async getRoutineByWeatherType(req: Request, res: Response) {
-    try {
-      const weatherType: string = req.params.type;
-      const routineWeatherType = await routineService.getRoutineByWeatherType(weatherType);
-      res.status(200).send(routineWeatherType);
-    } catch (error) {
-      console.log(error);
-      res.status(400).send('Does not exist');
-    }
-  },
-
   async getRoutineByUserId(req: Request<{ id: string }>, res: Response) {
     try {
       const userId = req.params.id;

@@ -6,7 +6,6 @@ export default {
     usersId: number,
     newComments: string | undefined,
     newDate: string,
-    newImgUrl: string | undefined,
   ) {
     const japanTime = new Date().toLocaleString('en-US', {
       timeZone: 'Asia/Tokyo',
@@ -20,7 +19,6 @@ export default {
           connect: { id: routineId },
         },
         comments: newComments,
-        img_url: newImgUrl,
         date: newDate,
         created_at: japanTime,
         updated_at: japanTime,
@@ -29,8 +27,7 @@ export default {
         users_id: true,
         routines_id: true,
         comments: true,
-        date: true,
-        img_url: true,
+        date: true
       },
     });
 
@@ -53,7 +50,6 @@ export default {
           },
         },
         date: true,
-        img_url: true,
       },
     });
     return journalData;

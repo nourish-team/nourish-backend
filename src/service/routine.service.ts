@@ -6,7 +6,6 @@ interface Routine {
   skin_type: string;
   routine_product: number[];
   public: boolean;
-  weather_type: string;
   description: string;
 }
 
@@ -29,7 +28,6 @@ export default {
       skin_type: skinType,
       routine_product: routineProduct,
       public: routinePublic,
-      weather_type: weatherTag,
       description,
     } = routineData;
     return routineModel.createRoutine(
@@ -38,8 +36,7 @@ export default {
       skinType,
       routineProduct,
       routinePublic,
-      weatherTag,
-      description,
+      description
     );
   },
 
@@ -49,10 +46,6 @@ export default {
 
   getRoutineBySkintype(skintype: string) {
     return routineModel.getRoutineBySkintype(skintype);
-  },
-
-  getRoutineByWeatherType(weatherType: string) {
-    return routineModel.getRoutineByWeatherType(weatherType);
   },
 
   getRoutineByUserId(userId: string) {

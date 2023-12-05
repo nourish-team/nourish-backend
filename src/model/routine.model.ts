@@ -7,7 +7,6 @@ export default {
     skinType: string,
     routineProduct: number[],
     routinePublic: boolean,
-    weatherTag: string,
     description: string,
   ) {
     const japanTime = new Date().toLocaleString('en-US', {
@@ -22,7 +21,6 @@ export default {
         skin_type: skinType,
         routine_product: routineProduct,
         public: routinePublic,
-        weather_type: weatherTag,
         description,
         updated_at: japanTime,
         created_at: japanTime,
@@ -32,7 +30,6 @@ export default {
         skin_type: true,
         routine_product: true,
         public: true,
-        weather_type: true,
         description: true,
       },
     });
@@ -52,20 +49,8 @@ export default {
         routine_name: true,
         routine_product: true,
         created_at: true,
-        weather_type: true,
-        description: true,
-        _count: {
-          select: {
-            likes: true,
-          },
-        },
+        description: true
       },
-      orderBy: {
-        likes: {
-          _count: 'desc',
-        },
-      },
-      take: 10,
     });
     return allRoutines;
   },
@@ -88,45 +73,10 @@ export default {
         routine_name: true,
         routine_product: true,
         created_at: true,
-        weather_type: true,
-        description: true,
-        _count: {
-          select: {
-            likes: true,
-          },
-        },
+        description: true
       },
     });
     return routinesBySkintype;
-  },
-
-  async getRoutineByWeatherType(weatherType: string) {
-    const routineWeatherType = prisma.routines.findMany({
-      orderBy: [{ created_at: 'desc' }],
-      where: {
-        weather_type: weatherType,
-      },
-      select: {
-        id: true,
-        user_id: {
-          select: {
-            id: true,
-            username: true,
-          },
-        },
-        routine_name: true,
-        routine_product: true,
-        created_at: true,
-        weather_type: true,
-        description: true,
-        _count: {
-          select: {
-            likes: true,
-          },
-        },
-      },
-    });
-    return routineWeatherType;
   },
 
   async getRoutineByUserId(userId: number) {
