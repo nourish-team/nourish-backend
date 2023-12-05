@@ -24,7 +24,8 @@
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier --write 'src/**/*.ts'",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "renovate": "npx renovate"
   },
   "husky": {
     "hooks": {
@@ -45,6 +46,7 @@
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
     "prisma": "^4.15.0",
+    "renovate": "^37.83.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

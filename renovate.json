@@ -1,0 +1,19 @@
+{
+    "extends": ["config:base"],
+    "baseBranches": ["main"],
+    "rebaseWhen": "conflicted",
+    "packageRules": [
+      {
+        "matchPackageNames": ["*"],
+        "enabled": true
+      }
+    ],
+    "platforms": ["github"],
+    "repositories": [
+        {
+        "platform": "github",
+        "repository": "nourish-team/nourish-backend",
+        "hostRules": ["github.com"]
+        }
+    ]
+  }
