@@ -36,7 +36,7 @@ export default {
       skinType,
       routineProduct,
       routinePublic,
-      description
+      description,
     );
   },
 

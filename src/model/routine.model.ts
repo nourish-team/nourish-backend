@@ -49,7 +49,7 @@ export default {
         routine_name: true,
         routine_product: true,
         created_at: true,
-        description: true
+        description: true,
       },
     });
     return allRoutines;
@@ -73,7 +73,7 @@ export default {
         routine_name: true,
         routine_product: true,
         created_at: true,
-        description: true
+        description: true,
       },
     });
     return routinesBySkintype;

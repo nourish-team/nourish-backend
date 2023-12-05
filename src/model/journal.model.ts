@@ -27,7 +27,7 @@ export default {
         users_id: true,
         routines_id: true,
         comments: true,
-        date: true
+        date: true,
       },
     });
 

@@ -19,7 +19,7 @@ export default {
       routineId,
       usersId,
       comments,
-      date
+      date,
     );
   },
 
