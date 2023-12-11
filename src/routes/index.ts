@@ -5,7 +5,6 @@ import loginController from '../controller/login.controller';
 import productController from '../controller/product.controller';
 import routineController from '../controller/routine.controller';
 import journalController from '../controller/journal.controller';
-import likesController from '../controller/likes.controller';
 
 const router = express.Router();
 
@@ -26,9 +25,7 @@ router.get('/product/id/:id', productController.getProductById);
 
 // ROUTINE
 router.post('/routine/create', routineController.createRoutine);
-router.get('/routine/top10', routineController.getAllRoutine);
 router.get('/routine/skintype/:type', routineController.getRoutineBySkintype);
-router.get('/routine/weather/:type', routineController.getRoutineByWeatherType);
 router.get('/routine/user/:id', routineController.getRoutineByUserId);
 router.patch('/routine/update', routineController.updateRoutineUser);
 router.delete('/routine/delete/:id', routineController.deleteRoutineUser);
@@ -41,13 +38,5 @@ router.patch(
 router.post('/journal/routine', journalController.createJournalRoutine);
 // /journal/routine/user/?userid=1&routineid=1
 router.get('/journal/routine/user/', journalController.getJournalData);
-
-// LIKES
-router.post('/like/routine', likesController.createLike);
-router.get('/like/total/:routineid', likesController.getTotalLikes);
-router.get('/like/user/:id', likesController.getHistoryLikes);
-// /like/?userid=1&routineid=1
-// router.get("/like/", likesController.getLike)
-router.delete('/like/unlike/', likesController.deleteLike);
 
 export default router;

@@ -5,7 +5,6 @@ interface Journal {
   users_id: number;
   comments: string | undefined;
   date: string;
-  newImageUrl: string | undefined;
 }
 
 export default {
@@ -15,14 +14,12 @@ export default {
       users_id: usersId,
       comments,
       date,
-      newImageUrl,
     } = journalData;
     return journalModel.createJournalRoutine(
       routineId,
       usersId,
       comments,
       date,
-      newImageUrl,
     );
   },
 
