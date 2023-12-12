@@ -33,7 +33,7 @@ Welcome to our backend repository. We are always welcoming new contributors. Ple
 #### 1. Install dependencies
 
 ```sh
-npm install
+yarn install
 ```
 
 #### 2. Setup Husky hooks 🐶
@@ -41,7 +41,7 @@ npm install
 This will run linting before pushing your commits.
 
 ```sh
-npm run prepare
+yarn prepare
 ```
 
 #### 3. Setup Database 🐳
@@ -61,19 +61,19 @@ If you want to setup a local postgreSQL database you can change this to your pos
 #### 3.b Run Docker compose and migrations
 
 ```sh
-npm run dev:startdb
+yarn dev:startdb
 ```
 
 #### 3.c View the database
 
 ```sh
-npm run prisma:studio
+yarn prisma:studio
 ```
 
 #### 3.d Stop Docker container
 
 ```sh
-npm run db:dockerdown
+yarn db:dockerdown
 ```
 
 If you don't stop your container correctly, you may encounter some issues when starting the Docker container. If that's the case, please try to clean your Docker system by running:
@@ -85,7 +85,7 @@ docker system prune
 #### 4. Run the API
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 That's it!
@@ -98,13 +98,13 @@ That's it!
 1. Run ESlint for catching errors:
 
 ```
-npm run lint
+yarn lint
 ```
 
 2. If errors occur you can run:
 
 ```
-npm run lint:fix
+yarn lint:fix
 ```
 
 This will fix linting errors such as double quotes and spacing issues. However, it will not address more complex errors, such as TypeScript errors or the use of duplicate value names.
@@ -115,8 +115,9 @@ This will fix linting errors such as double quotes and spacing issues. However, 
    <summary>Testing with Jest</summary>
 
 1. Run tests
+
    ```
-   npm test
+   yarn test
    ```
 
    After the tests have finished running, the results can be viewed in the console.
