@@ -1,2 +1,2 @@
-web: npm run start
-release: npm run prisma:generate && npx prisma migrate deploy && npm run prisma:seed
+web: yarn start
+release: yarn prisma:generate && npx prisma migrate deploy && yarn prisma:seed
