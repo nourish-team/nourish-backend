@@ -1169,6 +1169,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^20.10.5":
+  version: 20.10.5
+  resolution: "@types/node@npm:20.10.5"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 4a378428d2c9f692b19801a5a3d20dc4c0ad5d4a3d103350f8b401af439941a9aa5efeadc8eb9db13c66c620318bc7f336abfc8934f82fd32c4a689d85068c6f
+  languageName: node
+  linkType: hard
+
 "@types/qs@npm:*":
   version: 6.9.10
   resolution: "@types/qs@npm:6.9.10"
@@ -1711,6 +1720,7 @@ __metadata:
     "@types/cors": "npm:^2.8.13"
     "@types/express": "npm:^4.17.17"
     "@types/jest": "npm:^29.5.6"
+    "@types/node": "npm:^20.10.5"
     "@typescript-eslint/eslint-plugin": "npm:^6.9.0"
     "@typescript-eslint/parser": "npm:^6.9.0"
     cors: "npm:^2.8.5"
