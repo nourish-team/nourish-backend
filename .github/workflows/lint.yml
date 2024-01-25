@@ -20,7 +20,7 @@ jobs:
           node-version: '18.x'
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
 
       - name: Running Eslint
-        run: npm run lint
+        run: yarn lint

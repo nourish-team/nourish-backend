@@ -9,33 +9,32 @@
   "overrides": {
     "semver": "^7.5.3"
   },
+  "engines": {
+    "node": "18.18.2",
+    "yarn": "4.0.2"
+  },
   "scripts": {
     "start": "node build/server.js",
     "dev": "nodemon src/server.ts",
     "build": "tsc -p .",
-    "dev:startdb": "npm run db:dockerup && npm run prisma:migrate && npm run prisma:seed",
+    "dev:startdb": "yarn db:dockerup && yarn prisma:migrate && yarn prisma:seed",
     "db:dockerup": "echo \"🐳✨ Starting docker compose...✨🐳\" && docker compose -f docker/docker-compose-db-dev.yml up -d",
     "db:dockerdown": "echo \"🐋 Stopping docker compose... 🐋\" && docker compose -f docker/docker-compose-db-dev.yml down",
-    "prisma:studio": "npx prisma studio",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "echo \"🔄️ Running migrations...🔄️\" && npx prisma migrate dev",
-    "prisma:seed": "npx prisma db seed",
+    "prisma:studio": "prisma studio",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "echo \"🔄️ Running migrations...🔄️\" && yarn prisma migrate dev",
+    "prisma:seed": "prisma db seed",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier --write 'src/**/*.ts'",
     "prepare": "husky install",
     "test": "jest"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": ".husky/pre-push"
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^4.15.0",
+    "@prisma/client": "^5.7.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.1.4",
@@ -44,13 +43,13 @@
     "jest-mock-extended": "^3.0.5",
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
-    "prisma": "^4.15.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.6",
+    "@types/node": "^20.10.5",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
@@ -62,6 +61,7 @@
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "prettier": "^3.0.3",
+    "prisma": "^5.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
   }
